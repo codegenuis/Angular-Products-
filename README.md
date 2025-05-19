@@ -7,7 +7,7 @@ ng serve
 ```
 
 ## Assumptions
-- Products are loaded from a static JSON file
+- Products are loaded from a mock API
 - Filters apply client-side only
 
 ## Improvements
