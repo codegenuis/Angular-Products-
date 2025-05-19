@@ -1,0 +1,37 @@
+<div class="product-page-container">
+    <header class="product-header">
+        <h1>Our Products</h1>
+        <p>Discover our high-quality selection of products</p>
+    </header>
+
+    <div class="filters-container">
+        <div class="search-container">
+            <input [formControl]="searchControl" placeholder="Search products" class="search-input" />
+        </div>
+
+        <div class="category-filters">
+            <button class="category-btn" [class.active]="selectedCategory === 'All'" (click)="filterByCategory('All')">
+                All
+            </button>
+            <button *ngFor="let category of categories" class="category-btn"
+                [class.active]="selectedCategory === category" (click)="filterByCategory(category)">
+                {{ category }}
+            </button>
+        </div>
+    </div>
+
+    <div *ngIf="isLoading" class="loading-container">
+        <div class="loading-spinner"></div>
+        <p>Loading products...</p>
+    </div>
+
+    <div *ngIf="!isLoading && filtered.length === 0" class="no-results">
+        <p>No products found matching your criteria.</p>
+    </div>
+
+    <div class="products-grid">
+        <div class="product-item" *ngFor="let product of filtered">
+            <app-product-card [product]="product"></app-product-card>
+        </div>
+    </div>
+</div>
